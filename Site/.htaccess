@@ -1,0 +1,15 @@
+ErrorDocument 404 http://www.whichmovietowatch.com
+
+RewriteEngine On
+Options +FollowSymLinks
+
+RewriteBase /
+
+#Force to WWW
+RewriteCond %{HTTP_HOST} !^www\.whichmovietowatch\.com
+RewriteRule (.*) http://www.whichmovietowatch.com/$1 [R=301,L]
+
+#Serve index for all requests that are not static file
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php [QSA,L]
+
